@@ -3,8 +3,8 @@ if exists('g:loaded_yapf')
 endif
 let g:loaded_yapf = 1
 
-if !exists("YAPF(...)")
-  function YAPF(...)
+if !exists("Yapf(...)")
+  function Yapf(...)
 
     let l:args = get(a:, 1, '')
 
@@ -44,5 +44,5 @@ if !exists("YAPF(...)")
     end
   endfunction
 
-  command! -nargs=? -bar Yapf call Yapf(<f-args>)
+  command! -nargs=? -bar YAPF call Yapf(<f-args>)
 endif
