@@ -25,6 +25,9 @@ function! yapf#YAPF() range
   let l:line_ranges = a:firstline . '-' . a:lastline
   let l:cmd = 'yapf --lines=' . l:line_ranges
 
+  " Save cursor position
+  let save_pos = getpos('.')
+
   " Call YAPF with the current buffer
   if exists('*systemlist')
     let l:formatted_text = systemlist(l:cmd, join(getline(1, '$'), "\n") . "\n")
@@ -43,4 +46,7 @@ function! yapf#YAPF() range
   " Update the buffer.
   execute '1,' . string(line('$')) . 'delete'
   call setline(1, l:formatted_text)
+
+  " Move cursor to saved position
+  call setpos('.', save_pos)
 endfunction
